@@ -1,2 +1,2 @@
-import {FlightStatus} from "./FlightStatus";
+import {FlightStatus} from "./FlightStatus.js";
 export {FlightStatus};

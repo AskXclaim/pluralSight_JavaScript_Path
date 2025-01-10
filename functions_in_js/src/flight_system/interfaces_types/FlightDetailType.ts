@@ -3,5 +3,5 @@ import {FlightStatus} from "../enums";
 export interface FlightDetailType{
     flightId:string,
     from:string,
-    status:FlightStatus
+    status:FlightStatus,
 }

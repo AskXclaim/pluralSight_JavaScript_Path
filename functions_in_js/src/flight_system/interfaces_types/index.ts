@@ -1,4 +1,4 @@
-import {FlightDetailType} from "./FlightDetailType";
-import {FlightDetailInterface} from "./FlightDetailInterface";
+import {FlightDetailType} from "./FlightDetailType.js";
+import {FlightDetailInterface} from "./FlightDetailInterface.js";
 
 export {FlightDetailType, FlightDetailInterface}

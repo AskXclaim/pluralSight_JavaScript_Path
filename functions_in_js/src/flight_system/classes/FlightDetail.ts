@@ -1,12 +1,13 @@
-import {FlightDetailInterface, FlightDetailType} from "../interfaces_types";
 import {FlightStatus} from "../enums";
+import {Validation} from "../common";
+import {FlightDetailInterface, FlightDetailType} from "../interfaces_types";
 
-export class FlightDetail implements FlightDetailInterface {
+export class FlightDetail implements FlightDetailType, FlightDetailInterface {
     readonly #_flightId: string;
     readonly #_from: string;
     #_status: FlightStatus;
 
-    constructor({flightId, from, status}: FlightDetailType) {
+    constructor(flightId: string, from: string, status: FlightStatus) {
         const invalidParameters: string[] = [];
         this.validateArguments({flightId, from, invalidParameters});
         if (invalidParameters.length > 0) {
@@ -18,12 +19,19 @@ export class FlightDetail implements FlightDetailInterface {
         this.#_status = status;
     }
 
+    get flightId() {
+        return this.#_flightId;
+    }
+
+    get from() {
+        return this.#_from;
+    }
+
+    get status() {
+        return this.#_status;
+    }
     set status(value: FlightStatus) {
-        if (!this.#isParameterValid(value)) {
-            throw new Error("Invalid value passed. status cannot be set to an invalid value");
-        } else {
             this.#_status = value;
-        }
     }
 
     public flightDetails = () => ({
@@ -34,19 +42,15 @@ export class FlightDetail implements FlightDetailInterface {
 
     private readonly validateArguments
         = ({flightId, from, invalidParameters}: { flightId: string, from: string, invalidParameters: string[] }) => {
-        if (!this.#isParameterValid(flightId)) {
+        if (!Validation.doesStringHaveValue(flightId)) {
             invalidParameters.push("flightId");
         }
-        if (!this.#isParameterValid(from)) {
+        if (!Validation.doesStringHaveValue(from)) {
             invalidParameters.push("from");
         }
     }
     private readonly getInvalidParametersMessage = (invalidParameters: string[]) => {
         let errorMessage: string = "The following parameters have invalid arguments:\\n"
         return `${errorMessage}${invalidParameters.join(",")}`;
-    }
-
-    readonly #isParameterValid = (value: string): boolean => {
-        return !value || value.trim().length === 0;
     }
 }
