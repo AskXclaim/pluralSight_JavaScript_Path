@@ -1,6 +1,6 @@
 import { FlightStatus } from "../enums";
 export class Style {
-    static GetColorBasedOnStatus(status) {
+    static getColorBasedOnStatus(status) {
         if (status === FlightStatus.OnTime)
             return "lightgreen";
         if (status === FlightStatus.Delayed)

@@ -19,7 +19,7 @@ FlightEntry.getConstructedColumn = (data, key) => {
     const newColumn = _a.creatHtmlElementByType("td");
     newColumn.innerText = data[key];
     if (key === "status") {
-        newColumn.style.backgroundColor = Style.GetColorBasedOnStatus(data.status);
+        newColumn.style.backgroundColor = Style.getColorBasedOnStatus(data.status);
     }
     return newColumn;
 };

@@ -25,7 +25,7 @@ export class FlightEntry {
         const newColumn = this.creatHtmlElementByType("td");
         newColumn.innerText = data[key as keyof FlightDetailType];
         if (key === "status") {
-            newColumn.style.backgroundColor = Style.GetColorBasedOnStatus(data.status)
+            newColumn.style.backgroundColor = Style.getColorBasedOnStatus(data.status)
         }
         return newColumn;
     }
